@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<h2 th:if="${user}" th:text="'Hello there, ' + ${user.getUserName()}"></h2>
+
+
+
+</body>
+</html>

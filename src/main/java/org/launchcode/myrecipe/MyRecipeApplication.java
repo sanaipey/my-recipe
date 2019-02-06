@@ -1,3 +1,4 @@
+
 package org.launchcode.myrecipe;
 
 import org.springframework.boot.SpringApplication;
@@ -11,4 +12,3 @@ public class MyRecipeApplication {
 	}
 
 }
-
