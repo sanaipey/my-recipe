@@ -1,12 +1,24 @@
 package org.launchcode.myrecipe.models;
 
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class User {
 
 
+    @NotNull
+    @Size(min=3, max=15)
     private String userName;
+
+    @NotNull
+    @Size(min=3, max=30)
     private String email;
+
+    @NotNull
+    @Size(min=3, max=10)
     private String password;
+
     private int userId;
     private static int nextId = 1;  //initializes userId so that it's unique for every single user object
 

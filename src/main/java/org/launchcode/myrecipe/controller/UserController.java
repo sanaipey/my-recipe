@@ -19,7 +19,12 @@ public class UserController {
         return "user/add";
     }
     @RequestMapping(value = "add", method=RequestMethod.POST)
-    public String submitAddUserForm(@ModelAttribute User user, Model model){
+    public String submitAddUserForm(@ModelAttribute @Valid User user, Model model, Errors errors){
+
+        if (errors.hasErrors()){
+            model.addAttribute("user", new User());
+            return "user/add";  //render user/add form if it has errors
+        }
 
         model.addAttribute(user);
         return "user/index";
