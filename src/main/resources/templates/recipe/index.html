@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${recipes} and ${recipes.size()}"> No Recipe found :( Start adding your favorite recipes! </p>
+
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+    </tr>
+
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.name}" ></td>
+        <td th:text="${recipe.description}"></td>
+        <td th:if="${recipe.category}" th:text="${recipe.category.name}"></td>
+    </tr>
+
+</table>
+
+<a th:href="@{recipe/add}">Add</a> |
+<a th:href="@{recipe/remove}">Remove</a>
+
+</body>
+</html>

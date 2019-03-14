@@ -1,13 +1,18 @@
 package org.launchcode.myrecipe.models;
 
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
+@Entity
 public class User {
 
+    @Id//id should be a primary key and unique  in DB
+    @GeneratedValue//Hibernate(Data layer)should generate that value for us
+    private int id;
 
-    @NotNull
     @Size(min=3, max=15)
     private String userName;
 
@@ -19,31 +24,30 @@ public class User {
     @Size(min=3, max=10)
     private String password;
 
-    private int userId;
-    private static int nextId = 1;  //initializes userId so that it's unique for every single user object
+    @OneToMany
+    @JoinColumn(name="user_id")
+    private List<Recipe> recipe;
 
+    @OneToMany
+    @JoinColumn(name="user_id")
+    private List<Category> category;
 
+    //private int userId;
+    //private static int nextId = 1;  //initializes userId so that it's unique for every single user object
 
     public User() {
-        userId = nextId;
-        nextId++;
     }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
 
     public User(String userName, String email, String password){
-        this(); //calls default constructor for the User class and initializes Id field
+        //this(); //calls default constructor for the User class and initializes Id field
         this.userName = userName;
         this.email = email;
         this.password = password;
 
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getUserName() {

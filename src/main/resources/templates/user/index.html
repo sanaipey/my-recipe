@@ -7,9 +7,11 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<h2 th:if="${user}" th:text="'Hello there, ' + ${user.getUserName()}"></h2>
+<h1 th:text="'Welcome, ' + ${user.userName}"></h1>
 
-<a th:href="@{user/add}"> Register </a>
+<h2>Your one-stop place for all your favorite recipes saving needs!</h2>
+
+<a th:href="@{user/add}"> Log Out </a>
 
 </body>
 </html>
