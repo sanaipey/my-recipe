@@ -28,8 +28,13 @@
     </div>
 
     <div class="form-group">
-        <label th:for="youTube">YouTube</label>
-        <input class="form-control" th:field="*{youTube}"/>
+        <label th:for="recipeType">Recipe Type </label>
+        <select th:field="*{recipeType}">
+            <option th:each="recipeType: ${recipeTypes}"
+                    th:text="${recipeType.name}"
+                    th:value="${recipeType}">
+            </option>
+        </select>
 
     </div>
 

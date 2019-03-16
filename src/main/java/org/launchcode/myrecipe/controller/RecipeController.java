@@ -2,6 +2,7 @@ package org.launchcode.myrecipe.controller;
 
 import org.launchcode.myrecipe.models.Category;
 import org.launchcode.myrecipe.models.Recipe;
+import org.launchcode.myrecipe.models.RecipeType;
 import org.launchcode.myrecipe.models.data.CategoryDao;
 import org.launchcode.myrecipe.models.data.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,7 @@ public class RecipeController {
     public String displayAddRecipeForm(Model model){
         model.addAttribute("title","Add Recipe");
         model.addAttribute(new Recipe());
+        model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("categories", categoryDao.findAll());
 
         return "recipe/add";
