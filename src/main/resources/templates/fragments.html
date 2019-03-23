@@ -4,21 +4,21 @@
     <meta charset="UTF-8"/>
     <title th:text="${title}">My Recipes</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css" />
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link type="text/css" href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-<nav class="navbar navbar-inverse" th:fragment="navigation">
+<nav class="navbar navbar-dark" style="background-color: #e3f2fd;" th:fragment="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/recipe/">Start saving your favorite recipes!</a>
+            <a class="navbar-brand" href="/recipe/">MyRecipes</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="/recipe">Home</a></li>
             <li><a href="/category">Categories</a></li>
             <li><a href="/recipe/">My Recipes</a></li>
+            <li><a href="/type/"> Recipe Types </a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/user/add"><span class="glyphicon glyphicon-user"></span> Register to Become a Member</a></li>

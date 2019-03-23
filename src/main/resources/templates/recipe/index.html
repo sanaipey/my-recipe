@@ -23,14 +23,14 @@
         <td th:text="${recipe.name}" ></td>
         <td th:text="${recipe.description}"></td>
         <td th:if="${recipe.category}" th:text="${recipe.category.name}"></td>
-        <td th:if="${recipe.recipeType}" th:text="${recipe.recipeType.name}"></td>
+        <td th:if="${recipe.recipeTypes}" th:text="${recipe.recipeTypes.name}"></td>
     </tr>
 
 
 </table>
 
-<a href="recipe/add">Add</a> |
-<a href="recipe/remove">Remove</a>
+<a th:href="@{recipe/add}">Add</a> |
+<a th:href="@{recipe/remove}">Remove</a>
 
 </body>
 </html>

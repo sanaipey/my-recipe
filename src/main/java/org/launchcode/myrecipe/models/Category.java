@@ -22,7 +22,8 @@ public class Category {
     @JoinColumn(name = "category_id")
     private List<Recipe> recipes = new ArrayList<>();
 
-
+    @ManyToOne
+    private User user;
 
     public Category(String name){
         this.name = name;

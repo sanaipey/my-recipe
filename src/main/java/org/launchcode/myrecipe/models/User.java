@@ -32,6 +32,10 @@ public class User {
     @JoinColumn(name="user_id")
     private List<Category> category;
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<RecipeTypes> recipeTypes;
+
     //private int userId;
     //private static int nextId = 1;  //initializes userId so that it's unique for every single user object
 
@@ -74,5 +78,9 @@ public class User {
         this.password = password;
     }
 
+    public List<Recipe> getRecipe() { return recipe; }
 
+    public List<Category> getCategory() { return category; }
+
+    public List<RecipeTypes> getRecipeTypes() { return recipeTypes; }
 }

@@ -4,20 +4,14 @@ import org.launchcode.myrecipe.models.data.CategoryDao;
 import org.launchcode.myrecipe.models.data.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class RecipeTypes {
-    @Autowired
-    RecipeDao recipeDao;
-
-    @Autowired
-    CategoryDao categoryDao;
-
 
     @Id
     @GeneratedValue
@@ -27,17 +21,43 @@ public class RecipeTypes {
     @Size(min=3, max=15)
     private String name;
 
-    public void setName(String name) {
-        this.name = name;
+    @OneToMany
+    @JoinColumn(name = "recipe_types_id")
+    private List<Recipe> recipes = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
+
+    public RecipeTypes(String name){
+        this.name = name;
+    }
+
     public RecipeTypes(){}
 
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
+    }
 
-
+    public void addItem(Recipe item) {
+        recipes.add(item);
+    }
 }
 

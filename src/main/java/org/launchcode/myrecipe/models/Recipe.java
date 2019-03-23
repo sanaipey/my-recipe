@@ -1,9 +1,14 @@
 package org.launchcode.myrecipe.models;
 
+import org.launchcode.myrecipe.models.data.RecipeDao;
+import org.launchcode.myrecipe.models.data.RecipeTypesDao;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Recipe {
@@ -20,19 +25,22 @@ public class Recipe {
     @Size(min=1, message="Description must not be empty")
     private String description;
 
-   // private String youTube;
-    @Enumerated(EnumType.STRING)
-    private RecipeType recipeType;
+   // private String youTube
 
     public Recipe(){ }
 
     @ManyToOne
+    private RecipeTypes recipeTypes;
+
+    @ManyToOne
     private Category category;
 
-    public Recipe(String name, String description, RecipeType recipeType){
+    @ManyToOne
+    private User user;
+
+    public Recipe(String name, String description){
         this.name = name;
         this.description  = description;
-        this.recipeType = recipeType;
 
     }
 
@@ -64,13 +72,15 @@ public class Recipe {
         this.category = category;
     }
 
-    public RecipeType getRecipeType() {
-        return recipeType;
+    public RecipeTypes getRecipeTypes() {
+        return recipeTypes;
     }
 
-    public void setRecipeType(RecipeType recipeType) {
-        this.recipeType = recipeType;
+    public void setRecipeTypes(RecipeTypes recipeTypes) {
+        this.recipeTypes = recipeTypes;
     }
+}
+
     /* public String getYouTube() {
         return youTube;
     }
@@ -78,4 +88,4 @@ public class Recipe {
     public void setYouTube(String youTube) {
         this.youTube = youTube;
     }*/
-}
+

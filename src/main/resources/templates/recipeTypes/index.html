@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${recipeTypes} and ${recipeTypes.size()}"> No Recipe Type found,
+    Please Add a Recipe Type(Enter only: Breakfast,Lunch/Dinner,Snacks or Drinks) </p>
+
+<a href="type/add">Add Type</a>
+
+</body>
+</html>

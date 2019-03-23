@@ -2,9 +2,10 @@ package org.launchcode.myrecipe.controller;
 
 import org.launchcode.myrecipe.models.Category;
 import org.launchcode.myrecipe.models.Recipe;
-import org.launchcode.myrecipe.models.RecipeType;
+import org.launchcode.myrecipe.models.RecipeTypes;
 import org.launchcode.myrecipe.models.data.CategoryDao;
 import org.launchcode.myrecipe.models.data.RecipeDao;
+import org.launchcode.myrecipe.models.data.RecipeTypesDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.Entity;
 import javax.validation.Valid;
 
 @Controller
@@ -26,6 +26,9 @@ public class RecipeController {
 
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private RecipeTypesDao recipeTypesDao;
 
     @RequestMapping(value = "")
     public String index(Model model){
@@ -39,7 +42,7 @@ public class RecipeController {
     public String displayAddRecipeForm(Model model){
         model.addAttribute("title","Add Recipe");
         model.addAttribute(new Recipe());
-        model.addAttribute("recipeTypes", RecipeType.values());
+       // model.addAttribute("recipeTypes", RecipeTypes.values());
         model.addAttribute("categories", categoryDao.findAll());
 
         return "recipe/add";
@@ -53,23 +56,23 @@ public class RecipeController {
             return "recipe/add";
         }
 
-        Category cat = categoryDao.findById(categoryId).orElse(null);
+        Category cat = categoryDao.findOne(categoryId);
         recipe.setCategory(cat);
         recipeDao.save(recipe);
         return "redirect:";
     }
     @RequestMapping(value = "remove", method = RequestMethod.GET)
-    public String displayRemoveCheeseForm(Model model) {
+    public String displayRemoveRecipeForm(Model model) {
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("title", "Remove Recipe");
         return "recipe/remove";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCheeseForm(@RequestParam int[] recipeIds) {
+    public String processRemoveRecipeForm(@RequestParam int[] recipeIds) {
 
         for (int recipeId : recipeIds) {
-            recipeDao.deleteById(recipeId);
+            recipeDao.delete(recipeId);
         }
 
         return "redirect:";
